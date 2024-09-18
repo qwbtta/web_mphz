@@ -11,19 +11,48 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/login.vue')
+  },
+  {
+    path: '/programData',
+    name: 'programData',
+    component: () => import('../views/programData.vue')
+  },
+  {
+    path: '/workManagement',
+    name: 'workManagement',
+    component: () => import('../views/workManagement.vue')
+  },
+  {
+    path: '/UploadWorks',
+    name: 'UploadWorks',
+    component: () => import('../views/UploadWorks.vue')
+  }
+  ,
+  {
+    path: '/modelSet',
+    name: 'modelSet',
+    component: () => import('../views/modelSet.vue')
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
+
+// 全局前置守卫
+// router.beforeEach((to, from, next) => {
+//   let token =  sessionStorage.getItem("token")
+//   if (to.name !== 'login' && !token) {
+//     next({ name: 'login' }); // 重定向到登录页
+//   } else {
+//     next(); // 继续正常的路由
+//   }
+// });
+
 
 export default router
